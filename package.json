@@ -1,0 +1,35 @@
+{
+  "name": "ep_users",
+  "description": "With the ep_users plugin it's possible to create password saved pads in groups. It's a User-Management System. It allows User to register, authenticate, to create groups and to create pads in groups.",
+  "version": "0.0.1",
+  "author": {
+    "name": "ffalt"
+  },
+  "dependencies": {
+    "async": "^2.1.5",
+    "crypto": "0.0.3",
+    "ejs": "2.5.6",
+    "formidable": "1.1.1",
+    "mysql": "2.13.0",
+    "nodemailer": "^3.1.7"
+  },
+  "main": "hooks.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ffalt/ep_users.git"
+  },
+  "keywords": [
+    "etherpad-lite",
+    "user",
+    "user-management",
+    "group pads",
+    "group"
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ffalt/ep_users/issues"
+  }
+}

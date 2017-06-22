@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><%= product_name %> - <%= lang('My Groups') %></title>
+    <% include partials/meta %>
+</head>
+<body>
+<% include partials/header %>
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s12 m6">
+                <ul class="collection with-header">
+                    <li class="collection-header"><h4><%= lang('My Groups') %></h4></li>
+                    <% if (groups.length > 0) { %>
+                    <% for(var i = 0; i < groups.length; i++){ %>
+                    <a class="collection-item avatar" href="<%= baseurl %>group/<%= groups[i].groupID %>">
+                        <li>
+                            <i class="material-icons circle">group</i>
+                            <span class="title"><%= groups[i].name %></span><br>
+                            <% if (groups[i].Role == 1) { %>
+                            <span class="subtitle" title=" <%= lang('You are owner of this group') %>"><i class="material-icons">person</i> <%= lang('Owner') %></span>
+                            <% } else { %>
+                            <span class="subtitle" title=" <%= lang('You are user of this group') %>"><i class="material-icons">person_outline</i> <%= lang('User') %></span>
+                            <% } %>
+                        </li>
+                    </a>
+                    <% } %>
+                    <% } else { %>
+                    <li class="collection-item disabled"><%= lang('You have no groups at the moment') %></li>
+                    <% } %>
+                </ul>
+            </div>
+            <div class="col s12 m6">
+                <ul class="collection with-header">
+                    <li class="collection-header"><h4><%= lang('Create Group') %></h4></li>
+                    <li>
+                        <div class="collection-form">
+                            <form id="formCreatePrivateGroup">
+                                <div class="input-field">
+                                    <input class="mdl-textfield__input" type="text" id="groupName" autocomplete="off">
+                                    <label class="collection-form-label" for="groupName"><%= lang('Group-Name') %></label>
+                                </div>
+                                <button type="submit" class="waves-effect waves-light btn collection-form-button"><%= lang('Create') %></button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<% include partials/footer %>
+</body>
+</html>
+

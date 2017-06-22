@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><%= product_name %> - <%= lang('Group Pad') %></title>
+    <% include partials/meta %>
+    <script>
+		document.cookie = "sessionID=<%= sessionID %>; path=/";
+    </script>
+</head>
+<body>
+<% include partials/header %>
+<main class="iframe-parent">
+    <iframe src="<%= padurl %>" width="100%" height="100%" id="iframePad" frameborder="0"></iframe>
+</main>
+<% include partials/footer %>
+</body>
+</html>

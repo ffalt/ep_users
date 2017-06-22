@@ -1,0 +1,18 @@
+<nav class="black lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+        <a href="/" class="product-name"><%= product_name %></a>
+        <ul class="right">
+            <% if (username) { %>
+                <li><a class="mdl-navigation__link" href="<%= baseurl %>home"><%= lang('Home') %></a></li>
+                <% if (settings.allow_public_pads) { %>
+                <li><a class="mdl-navigation__link" href="<%= baseurl %>pads"><%= lang('Public Pads') %></a></li>
+                <% } %>
+                <li><a class="mdl-navigation__link" href="<%= baseurl %>groups"><%= lang('My Groups') %></a></li>
+                <li><a class="mdl-navigation__link" href="<%= baseurl %>user"><%= lang('Account') %></a></li>
+                <li><a class="mdl-navigation__link btn-logout" href><%= lang('Logout') %></a></li>
+            <% } else { %>
+                <li><a class="mdl-navigation__link" href="<%= baseurl %>login"><%= lang('Login') %></a></li>
+            <% } %>
+        </ul>
+    </div>
+</nav>

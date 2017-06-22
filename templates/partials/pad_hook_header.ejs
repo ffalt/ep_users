@@ -1,0 +1,15 @@
+<nav class="pad-nav" role="navigation">
+    <div class="pad-nav-wrapper pad-nav-container">
+        <a href="/" class="pad-brand-logo"><%= product_name %></a>
+        <ul class="nav-bar nav-logged-in right hide-on-med-and-down">
+            <li><a href="<%= baseurl %>home"><%= lang('Home') %></a></li>
+            <li><a href="<%= baseurl %>pads"><%= lang('Public Pads') %></a></li>
+            <li><a href="<%= baseurl %>groups"><%= lang('My Groups') %></a></li>
+            <li><a href="<%= baseurl %>user"><%= lang('Account') %></a></li>
+            <li><a href="<%= baseurl %>logout"><%= lang('Logout') %></a></li>
+        </ul>
+        <ul class="nav-bar nav-logged-out right hide-on-med-and-down">
+            <li><a href="<%= baseurl %>login"><%= lang('Login') %></a></li>
+        </ul>
+    </div>
+</nav>

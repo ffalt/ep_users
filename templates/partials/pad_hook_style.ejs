@@ -1,0 +1,127 @@
+<style>
+
+    @font-face {
+        font-family: "Roboto";
+        src: local(Roboto Thin), url("/static/plugins/ep_users/static/js/vendor/materialize/fonts/roboto/Roboto-Thin.woff2") format("woff2"), url("/static/plugins/ep_users/static/js/vendor/materialize/fonts/roboto/Roboto-Thin.woff") format("woff");
+        font-weight: 100;
+    }
+
+    @font-face {
+        font-family: "Roboto";
+        src: local(Roboto Light), url("/static/plugins/ep_users/static/js/vendor/materialize/fonts/roboto/Roboto-Light.woff2") format("woff2"), url("/static/plugins/ep_users/static/js/vendor/materialize/fonts/roboto/Roboto-Light.woff") format("woff");
+        font-weight: 300;
+    }
+
+    @font-face {
+        font-family: "Roboto";
+        src: local(Roboto Regular), url("/static/plugins/ep_users/static/js/vendor/materialize/fonts/roboto/Roboto-Regular.woff2") format("woff2"), url("/static/plugins/ep_users/static/js/vendor/materialize/fonts/roboto/Roboto-Regular.woff") format("woff");
+        font-weight: 400;
+    }
+
+    @font-face {
+        font-family: "Roboto";
+        src: local(Roboto Medium), url("/static/plugins/ep_users/static/js/vendor/materialize/fonts/roboto/Roboto-Medium.woff2") format("woff2"), url("/static/plugins/ep_users/static/js/vendor/materialize/fonts/roboto/Roboto-Medium.woff") format("woff");
+        font-weight: 500;
+    }
+
+    @font-face {
+        font-family: "Roboto";
+        src: local(Roboto Bold), url("/static/plugins/ep_users/static/js/vendor/materialize/fonts/roboto/Roboto-Bold.woff2") format("woff2"), url("/static/plugins/ep_users/static/js/vendor/materialize/fonts/roboto/Roboto-Bold.woff") format("woff");
+        font-weight: 700;
+    }
+
+    body.header-visible {
+        padding-top: 32px;
+    }
+
+    .pad-nav {
+        display: none;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+        font-family: "Roboto", sans-serif;
+        font-weight: normal;
+    }
+
+    .pad-nav-wrapper {
+        position: relative;
+        height: 100%;
+    }
+
+
+    .pad-nav-container {
+        margin: 0 auto;
+        max-width: 1280px;
+        width: 90%;
+    }
+
+    @media only screen and (min-width: 601px) {
+        .pad-nav-container {
+            width: 85%;
+        }
+    }
+
+    @media only screen and (min-width: 993px) {
+        .pad-nav-container {
+            width: 70%;
+        }
+    }
+
+
+    .pad-brand-logo {
+        position: absolute;
+        color: #fff;
+        display: inline-block;
+        font-size: 14px;
+        white-space: nowrap;
+        text-decoration: none;
+        line-height: 32px;
+    }
+
+    .nav-bar {
+        padding: 0;
+        list-style: none;
+        display: none;
+    }
+
+    .nav-bar li {
+        padding: 0;
+        transition: background-color .3s;
+        float: left;
+    }
+
+    .nav-bar li a {
+        color: #fff;
+        text-decoration: none;
+        transition: background-color .3s;
+        font-size: 14px;
+        display: block;
+        padding: 0 15px;
+        cursor: pointer;
+        line-height: 32px;
+    }
+
+    .nav-bar li a:hover {
+        background-color: rgba(0,0,0,0.1);
+    }
+
+    body.logged-in .nav-logged-in {
+        display: block;
+    }
+
+    body.logged-out .nav-logged-out {
+        display: block;
+    }
+
+    body.header-visible .pad-nav {
+        display: block;
+        background-color: #000;
+        top: 0;
+        position: fixed;
+        width: 100%;
+        height: 32px;
+    }
+
+    body.header-visible #editorcontainerbox {
+        top: 32px;
+    }
+
+</style>

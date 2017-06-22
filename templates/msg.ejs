@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><%= product_name %></title>
+    <% include partials/meta %>
+</head>
+<body>
+<% include partials/header %>
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s12 m6 offset-m3">
+                <h4><%= msg %></h4>
+            </div>
+        </div>
+    </div>
+</div>
+<% include partials/footer %>
+<script>
+	$(document).ready(function () {
+		app.utils.redirectToIndex(4000)
+	});
+</script>
+</body>
+</html>

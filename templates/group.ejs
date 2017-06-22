@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><%= product_name %> - <%= lang('Group') %> <%= id %></title>
+    <% include partials/meta %>
+</head>
+<body>
+<% include partials/header %>
+<div class="container">
+    <div class="section">
+        <h2><%= lang('Group') %>: <%= id %></h2>
+        <div class="row">
+            <div class="col s12 m6">
+                <ul class="collection with-header">
+                    <li class="collection-header"><h4><%= lang('Group Pads') %></h4></li>
+                    <% if (pads.length > 0) { %>
+                    <% for(var i = 0; i < pads.length; i++){ %>
+                    <a class="collection-item avatar" href="<%= baseurl %>group/<%= groupID %>/pad/<%= pads[i].name %>">
+                        <li>
+                            <i class="material-icons circle">note</i>
+                            <span class="title"><%= pads[i].name %></span><br/>
+                            <span class="subtitle"><%= pads[i].lastedit %></span>
+                            <% if (isOwner) { %>
+                            <span class="secondary-content">
+                                <i title="<%= lang('Delete Pad') %>" data-padname="<%= pads[i].name %>" data-groupid="<%= groupID %>" class="material-icons pad-delete clickable">delete</i>
+                            </span>
+                            <% } %>
+                        </li>
+                    </a>
+                    <% } %>
+                    <% } else { %>
+                    <li class="collection-item disabled"><%= lang('There are no pads in this group at the moment') %></li>
+                    <% } %>
+                </ul>
+            </div>
+            <div class="col s12 m6">
+                <% if (isOwner) { %>
+                <ul class="collection with-header">
+                    <li class="collection-header"><h4><%= lang('Create Group Pad') %></h4></li>
+                    <li>
+                        <div class="collection-form">
+                            <form id="formCreatePrivatePad" data-groupid="<%= groupID %>">
+                                <div class="input-field">
+                                    <input class="mdl-textfield__input" type="text" id="createGroupPad" autocomplete="off">
+                                    <label class="collection-form-label" for="createGroupPad"><%= lang('Pad-Name') %></label>
+                                </div>
+                                <button type="submit" class="waves-effect waves-light btn collection-form-button"><%= lang('Create') %></button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m6">
+                <% } %>
+                <ul class="collection with-header">
+                    <li class="collection-header"><h4><%= lang('Users in Group') %></h4></li>
+                    <% if (users.length > 0) { %>
+                    <% for(var i = 0; i < users.length; i++){ %>
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle">person</i>
+                        <span class="title"><%= users[i].FullName %></span><br/>
+                        <span class="subtitle"><% if (users[i].considered == 0) { %>
+                        <%= lang('Invited') %>
+                        <% } else if (users[i].Role == 1) { %>
+                        <%= lang('Owner') %>
+                        <% } else { %>
+                        <%= lang('User') %>
+                        <% } %></span>
+                        <% if (isOwner) { %>
+                        <span class="secondary-content">
+                            <% if (users[i].considered == 0) { %>
+                            <i title="<%= lang('Invite') %>" data-groupid="<%= groupID %>" data-userid="<%= users[i].userID %>" data-username="<%= users[i].FullName %>"
+                               class="material-icons user-reinvite clickable">mail</i>
+                            <% } else  if (users[i].Role !== 1) { %>
+                            <i title="<%= lang('Make Owner') %>" data-groupid="<%= groupID %>" data-userid="<%= users[i].userID %>" data-username="<%= users[i].FullName %>"
+                               class="material-icons user-makeowner clickable">mail</i>
+                            <% } %>
+                            <i title="<%= lang('Remove User') %>" data-groupid="<%= groupID %>" data-userid="<%= users[i].userID %>" data-username="<%= users[i].FullName %>" data-userreg="<%= (users[i].notRegistered ? 0 : 1) %>"
+                               class="material-icons btn-user_remove clickable">delete</i>
+                        </span>
+                        <% } %>
+                    </li>
+                    <% } %>
+                    <% } else { %>
+                    <li class="collection-item disabled"><%= lang('There are no users in this group at the moment') %></li>
+                    <% } %>
+                </ul>
+            </div>
+            <% if (isOwner) { %>
+            <div class="col s12 m6">
+                <ul class="collection with-header">
+                    <li class="collection-header"><h4><%= lang('Add User') %></h4></li>
+                    <li>
+                        <div class="collection-form">
+                            <form id="formAddUserToGroup" data-groupid="<%= groupID %>">
+                                <div class="input-field">
+                                    <input class="mdl-textfield__input" type="text" id="usernames">
+                                    <label class="collection-form-label" for="usernames"><%= lang('Email address') %></label>
+                                </div>
+                                <button type="submit" class="waves-effect waves-light btn collection-form-button"><%= lang('Invite') %></button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+<% include partials/footer %>
+</body>
+</html>

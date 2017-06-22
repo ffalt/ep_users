@@ -1,0 +1,109 @@
+<!-- Copyright 2014 Alexander Oberegger
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+
+<html>
+<head>
+    <title>User Administration - Groups</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="../../static/css/admin.css">
+    <script src="../../socket.io/socket.io.js"></script>
+    <script src="../../static/js/jquery.js"></script>
+    <script src="../../static/js/require-kernel.js"></script>
+    <script src="../../javascripts/lib/ep_etherpad-lite/static/js/ace2_common.js?callback=require.define"></script>
+    <script type="text/javascript">
+		(function () {
+			var pathComponents = location.pathname.split('/');
+			var baseURL = pathComponents.slice(0, pathComponents.length - 4).join('/') + '/';
+			require.setRootURI(baseURL + "javascripts/src");
+			require.setLibraryURI(baseURL + "javascripts/lib");
+			require.setGlobalKeyPath("require");
+			var plugins = require('ep_etherpad-lite/static/js/pluginfw/client_plugins');
+			var hooks = require('ep_etherpad-lite/static/js/pluginfw/hooks');
+			plugins.baseURL = baseURL;
+			plugins.update(function () {
+				hooks.plugins = plugins;
+				hooks.aCallAll('documentReady', 'ep_users/admin/groups');
+			});
+		}());
+    </script>
+    <link rel="stylesheet" href="../../static/plugins/ep_users/static/css/admin.css" type="text/css"/>
+    <script src="../../static/plugins/ep_users/static/js/client/ep_users_admin.js"></script>
+    <% e.begin_block("styles"); %>
+
+    <% e.end_block(); %>
+</head>
+<body>
+<div id="wrapper">
+    <div class="menu">
+        <h1>Etherpad</h1>
+        <ul>
+            <% e.begin_block("adminMenu"); %>
+            <li><a href="../plugins">Plugin manager</a></li>
+            <li><a href="../settings">Settings</a></li>
+            <li><a href="../plugins/info">Troubleshooting information</a></li>
+            <%
+            e.end_block(); %>
+        </ul>
+    </div>
+    <div class="innerwrapper">
+        <h2>User Administration - Groups</h2>
+        <% e.begin_block("useradminmenu"); %>
+        <ul class="leftwrapper">
+            <li><a href="groups">Groups</a></li>
+            <li><a href="users">Users</a></li>
+            <li><a href="settings">Settings</a></li>
+        </ul>
+        <% e.end_block(); %>
+
+        <div id="textfield-group">
+
+        </div>
+
+        <div class="formbox">
+            <form name="Add Group" id="add-group">
+                <div class="formbox-section">
+                    <label for="name-of-user">Name</label>
+                    <input type="text" placeholder="Name of new group" id="name-of-group" autocomplete="off">
+                </div>
+                 <input type="button" value="Add Group" id="addGroupButton">
+            </form>
+        </div>
+
+        <div class="rightwrapper">
+            <div class='group-results-div'>
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="header" data-field="id" data-label="ID">ID<a class="sort up"></a><a class="sort down"></a></th>
+                        <th class="header" data-field="name" data-label="Name">Name<a class="sort up"></a><a class="sort down"></a></th>
+                        <th class="header" data-field="authors" data-label="#Authors">#Authors<a class="sort up"></a><a class="sort down"></a></th>
+                        <th class="header" data-label="Delete">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody class="template">
+                    <tr>
+                        <td class="id" data-label="ID"></td>
+                        <td class="name" data-label="Name"></td>
+                        <td class="authors" data-label="#Authors"></td>
+                        <td class="delete" data-label="Delete"><input class="deleteButton" type="button" value="Delete"></td>
+                    </tr>
+                    </tbody>
+                    <tbody class='group-results'></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

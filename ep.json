@@ -1,0 +1,19 @@
+{
+  "parts": [
+    {
+      "name": "ep_users",
+      "hooks": {
+        "expressCreateServer": "ep_users/hooks.js:expressCreateServer",
+        "socketio": "ep_users/hooks",
+        "eejsBlock_adminMenu": "ep_users/hooks",
+        "eejsBlock_styles": "ep_users/hooks",
+        "eejsBlock_indexWrapper": "ep_users/hooks",
+        "eejsBlock_body": "ep_users/hooks"
+      },
+      "client_hooks": {
+        "documentReady": "ep_users/static/js/ep_users",
+        "postAceInit": "ep_users/static/js/ep_users"
+      }
+    }
+  ]
+}

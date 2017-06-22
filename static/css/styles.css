@@ -1,0 +1,52 @@
+.collection-form {
+  padding: 20px;
+  padding-top: 10px; }
+
+.collection-form-button {
+  float: right;
+  margin-bottom: 30px; }
+
+.collection-form-label {
+  width: 100%; }
+
+.collection-item .subtitle {
+  color: black;
+  font-size: 0.8em;
+  vertical-align: middle; }
+  .collection-item .subtitle i {
+    font-size: 1.1em;
+    vertical-align: middle; }
+.collection-item.avatar {
+  min-height: 64px !important; }
+
+.iframe-parent {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  bottom: 0;
+  overflow: hidden;
+  top: 32px; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%; }
+
+nav {
+  height: 32px;
+  line-height: 32px; }
+  nav .product-name {
+    font-size: 14px;
+    height: 32px;
+    line-height: 32px; }
+  nav ul a {
+    font-size: 14px; }
+
+.icon-span i, .icon-span span {
+  vertical-align: middle; }
+
+.clickable {
+  cursor: pointer; }
+
+/*# sourceMappingURL=styles.css.map */

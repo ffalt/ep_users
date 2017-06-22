@@ -1,0 +1,127 @@
+<!-- Copyright 2014 Alexander Oberegger
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+
+<html>
+<head>
+    <title>User Administration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="../../../static/css/admin.css">
+    <script src="../../../socket.io/socket.io.js"></script>
+    <script src="../../../static/js/jquery.js"></script>
+    <script src="../../../static/js/require-kernel.js"></script>
+    <script src="../../../javascripts/lib/ep_etherpad-lite/static/js/ace2_common.js?callback=require.define"></script>
+    <script type="text/javascript">
+		(function () {
+			var pathComponents = location.pathname.split('/');
+			var baseURL = pathComponents.slice(0, pathComponents.length - 4).join('/') + '/';
+			require.setRootURI(baseURL + "javascripts/src");
+			require.setLibraryURI(baseURL + "javascripts/lib");
+			require.setGlobalKeyPath("require");
+			var plugins = require('ep_etherpad-lite/static/js/pluginfw/client_plugins');
+			var hooks = require('ep_etherpad-lite/static/js/pluginfw/hooks');
+			plugins.baseURL = baseURL;
+			plugins.update(function () {
+				hooks.plugins = plugins;
+				hooks.aCallAll('documentReady', 'ep_users/admin/user');
+			});
+		}());
+    </script>
+    <link rel="stylesheet" href="../../../static/plugins/ep_users/static/css/admin.css" type="text/css"/>
+    <script src="../../../static/plugins/ep_users/static/js/client/ep_users_admin.js"></script>
+    <% e.begin_block("styles"); %>
+
+    <% e.end_block(); %>
+</head>
+<body>
+<div id="wrapper">
+    <div class="menu">
+        <h1>Etherpad</h1>
+        <ul>
+            <% e.begin_block("adminMenu"); %>
+            <li><a href="../../plugins">Plugin manager</a></li>
+            <li><a href="../../settings">Settings</a></li>
+            <li><a href="../../plugins/info">Troubleshooting information</a></li>
+            <% e.end_block(); %>
+        </ul>
+    </div>
+
+    <div class="innerwrapper">
+        <h2>User Administration - User <span id="username"></span></h2>
+        <% e.begin_block("useradminmenu"); %>
+        <ul class="leftwrapper">
+            <li><a href="../groups">Groups</a></li>
+            <li><a href="../users">Users</a></li>
+            <li><a href="../settings">Settings</a></li>
+        </ul>
+        <% e.end_block(); %>
+        <div id="fade" class="black_overlay"></div>
+        <div id="textfield-group"></div>
+
+        <div class="rightwrapper">
+            <h4>Groups</h4>
+            <div class="formbox">
+                <form name="Add To Group" id="add-group">
+                    <div class="formbox-section">
+                        <input type="button" value="Add Group" id="addGroupButton">
+                    </div>
+                </form>
+                <div id="GroupBox" class="white_content">
+                    <a href="javascript:void(0)" onclick="document.getElementById('GroupBox').style.display='none';document.getElementById('fade').style.display='none'">
+                        <span class="close-btn">X</span>
+                    </a>
+                    <div class="whitebox-result-div">
+                        <table class="groupResultTable">
+                            <thead id="tableGroupBoxHead">
+                            <tr>
+                                <th data-label="id">ID</th>
+                                <th data-label="name">Group Name</th>
+                            </tr>
+                            </thead>
+                            <tbody class="template">
+                            <tr>
+                                <td class="id" data-label="id"></td>
+                                <td class="name" data-label="groupname"></td>
+                            </tr>
+                            </tbody>
+                            <tbody class="results" id="resultGroupLightbox">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class='group-results-div'>
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="header" data-field="id" data-label="ID">Group ID<a class="sort up"></a><a class="sort down"></a></th>
+                        <th class="header" data-field="name" data-label="Name">Group Name<a class="sort up"></a><a class="sort down"></a></th>
+                        <th class="header" data-label="Remove">Remove</th>
+                    </tr>
+                    </thead>
+                    <tbody class="template">
+                    <tr>
+                        <td class="id" data-label="ID"></td>
+                        <td class="name" data-label="Name"></td>
+                        <td class="remove" data-label="Remove"><input class="deleteButton" type="button" value="Remove"></td>
+                    </tr>
+                    </tbody>
+                    <tbody class='group-results'></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
