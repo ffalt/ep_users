@@ -134,17 +134,6 @@ ep_users_admin.users = function (hooks, context) {
 		searchUser('');
 	};
 
-	var addUser = function (user) {
-		socket.emit('add-user', user.name, user.email, user.pw, function (err) {
-			if (!err) {
-				setInfo('User added!');
-				reload();
-			} else {
-				setInfo(err);
-			}
-		});
-	};
-
 	var handlers = function () {
 		$('.sort.up').unbind('click').click(function (e) {
 			var row = $(e.target).closest('th');
@@ -159,11 +148,14 @@ ep_users_admin.users = function (hooks, context) {
 			showUsers(currentUsers);
 		});
 		$('#addUserButton').unbind('click').click(function (e) {
-			var user = {};
-			user.email = $('#name-of-user').val();
-			user.name = $('#email-of-user').val();
-			user.pw = $('#pw-of-user').val();
-			addUser(user);
+			socket.emit('add-user', $('#name-of-user').val(), $('#email-of-user').val(), $('#pw-of-user').val(), function (err) {
+				if (!err) {
+					setInfo('User added!');
+					reload();
+				} else {
+					setInfo(err);
+				}
+			});
 		});
 	};
 
