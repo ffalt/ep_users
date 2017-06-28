@@ -1,6 +1,7 @@
 {
   "allow_public_pads": true,
   "allow_registration": false,
+  "allow_group_users_manage_pads": true,
   "name": "Etherpad",
   "lang": "EN",
   "terms": "no liability for nothing",
