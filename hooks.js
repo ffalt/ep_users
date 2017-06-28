@@ -202,7 +202,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		render(res, 'login', {});
 	});
 
-	args.app.post('/login', parseFields, function (req, res) {
+	args.app.post('/post/login', parseFields, function (req, res) {
 		backend.login(req.fields.email, req.fields.password, function (err, user) {
 			if (err) {
 				return sendError(res, err);
@@ -213,7 +213,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/logout', function (req, res) {
+	args.app.post('/post/logout', function (req, res) {
 		logOut(req);
 		res.send(true);
 	});
@@ -223,7 +223,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		res.redirect(baseurl + 'start');
 	});
 
-	args.app.post('/register', parseFields, function (req, res) {
+	args.app.post('/post/register', parseFields, function (req, res) {
 		if (!settings.allow_registration) {
 			return sendError(res, consts.msgs.REGISTRATION_CLOSED);
 		}
@@ -247,7 +247,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/pwreset', parseFields, function (req, res) {
+	args.app.post('/post/pwreset', parseFields, function (req, res) {
 		if (req.fields.email) {
 			backend.requestPasswordReset(req.fields.email, function (err) {
 				if (err) {
@@ -340,7 +340,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		render(res, 'user', {user: req.user}, req.user);
 	});
 
-	args.app.post('/padSearchTerm', authorizeError, parseFields, function (req, res) {
+	args.app.post('/post/padSearchTerm', authorizeError, parseFields, function (req, res) {
 		backend.searchPads(req.fields.groupID, req.fields.term, req.user.id, function (err, group, pads) {
 			if (err) {
 				return sendError(res, err);
@@ -349,7 +349,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/groupsSearchTerm', authorizeError, parseFields, function (req, res) {
+	args.app.post('/post/groupsSearchTerm', authorizeError, parseFields, function (req, res) {
 		backend.searchGroups(req.user.userID, req.fields.term, function (err, groups) {
 			if (err) {
 				return sendError(res, err);
@@ -358,7 +358,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/inviteUsers', authorizeError, parseFields, function (req, res) {
+	args.app.post('/post/inviteUsers', authorizeError, parseFields, function (req, res) {
 		backend.inviteUsers(req.fields.groupID, req.fields.users, req.user, function (err) {
 			if (err) {
 				return sendError(res, err);
@@ -367,7 +367,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/userSearchTerm', authorizeError, parseFields, function (req, res) {
+	args.app.post('/post/userSearchTerm', authorizeError, parseFields, function (req, res) {
 		backend.searchUsers(req.fields.groupID, req.fields.term, req.user.userID, function (err, users) {
 			if (err) {
 				return sendError(res, err);
@@ -376,7 +376,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/deleteNotRegUser', authorizeError, parseFields, function (req, res) {
+	args.app.post('/post/deleteNotRegUser', authorizeError, parseFields, function (req, res) {
 		backend.deleteNotRegUser(req.fields.groupID, req.fields.username, req.user.userID, function (err) {
 			if (err) {
 				return sendError(res, err);
@@ -385,7 +385,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/reinviteUser', authorizeError, parseFields, function (req, res) {
+	args.app.post('/post/reinviteUser', authorizeError, parseFields, function (req, res) {
 		backend.reinviteUser(req.fields.groupID, req.fields.userID, baseurl, req.user, function (err) {
 			if (err) {
 				return sendError(res, err);
@@ -394,7 +394,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/changeUserName', authorizeError, parseFields, function (req, res) {
+	args.app.post('/post/changeUserName', authorizeError, parseFields, function (req, res) {
 		backend.changeUserName(req.user.userID, req.fields.newUserName, function (err) {
 			if (err) {
 				return sendError(res, err);
@@ -403,7 +403,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/changeEmail', authorizeError, parseFields, function (req, res) {
+	args.app.post('/post/changeEmail', authorizeError, parseFields, function (req, res) {
 		backend.changeUserEMail(req.user.userID, req.fields.newEmail, function (err) {
 			if (err) {
 				return sendError(res, err);
@@ -412,7 +412,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/changeUserPw', authorizeError, parseFields, function (req, res) {
+	args.app.post('/post/changeUserPw', authorizeError, parseFields, function (req, res) {
 		backend.changeUserPw(req.user.userID, req.fields.newPW, req.fields.oldPW, req.user, function (err) {
 			if (err) {
 				return sendError(res, err);
@@ -421,7 +421,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/makeOwner', authorizeError, parseFields, function (req, res) {
+	args.app.post('/post/makeOwner', authorizeError, parseFields, function (req, res) {
 		backend.makeOwner(req.fields.userID, req.fields.groupID, req.user.userID, function (err) {
 			if (err) {
 				return sendError(res, err);
@@ -430,7 +430,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/deleteUserFromGroup', authorizeError, parseFields, function (req, res) {
+	args.app.post('/post/deleteUserFromGroup', authorizeError, parseFields, function (req, res) {
 		backend.deleteUserFromGroup(req.fields.userID, req.fields.groupID, req.user.userID, function (err) {
 			if (err) {
 				return sendError(res, err);
@@ -439,7 +439,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/deleteUser', authorizeError, parseFields, function (req, res) {
+	args.app.post('/post/deleteUser', authorizeError, parseFields, function (req, res) {
 		backend.deleteUser(req.user.userID, function (err) {
 			if (err) {
 				return sendError(res, err);
@@ -449,7 +449,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/createGroup', authorizeError, parseFields, function (req, res) {
+	args.app.post('/post/createGroup', authorizeError, parseFields, function (req, res) {
 		backend.createGroup(req.user.userID, req.fields.groupName, function (err, groupID) {
 			if (err) {
 				return sendError(res, err);
@@ -458,7 +458,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/createPad', authorizeError, parseFields, function (req, res) {
+	args.app.post('/post/createPad', authorizeError, parseFields, function (req, res) {
 		backend.createPad(req.fields.groupID, req.fields.padName, req.user.userID, function (err) {
 			if (err) {
 				return sendError(res, err);
@@ -467,7 +467,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/deletePad', authorizeError, parseFields, function (req, res) {
+	args.app.post('/post/deletePad', authorizeError, parseFields, function (req, res) {
 		backend.deletePad(req.fields.groupID, req.fields.padName, req.user.userID, function (err) {
 			if (err) {
 				return sendError(res, err);
@@ -476,7 +476,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/deleteGroup', authorizeError, parseFields, function (req, res) {
+	args.app.post('/post/deleteGroup', authorizeError, parseFields, function (req, res) {
 		backend.deleteGroup(req.fields.groupID, req.user.userID, function (err) {
 			if (err) {
 				return sendError(res, err);
@@ -485,7 +485,7 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 		});
 	});
 
-	args.app.post('/setPassword', authorizeError, parseFields, function (req, res) {
+	args.app.post('/post/setPassword', authorizeError, parseFields, function (req, res) {
 		backend.setPadPassword(req.fields.groupID, req.user.userID, req.fields.padName, req.fields.pw, function (err) {
 			if (err) {
 				return sendError(res, err);

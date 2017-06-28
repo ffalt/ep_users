@@ -47,7 +47,7 @@ app.utils.post = function (data, url, cb) {
 		type: 'POST',
 		data: JSON.stringify(data),
 		contentType: 'application/json',
-		url: baseurl + url,
+		url: baseurl + 'post/' + url,
 		success: function (response) {
 			cb(response);
 		},
