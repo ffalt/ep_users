@@ -161,6 +161,14 @@ var allowedIDs = {};
 
 exports.expressCreateServer = function (hook_name, args, cb) {
 
+	args.app.use('*', function (req, res, next) {
+		if (req.method === 'OPTIONS') {
+			res.header('Access-Control-Allow-Methods', 'OPTIONS, GET, HEAD, POST');
+			return res.status(200).json({});
+		}
+		next();
+	});
+
 	args.app.get('/', function (req, res) {
 		if (isUserAuthenticated(req)) {
 			return res.redirect(baseurl + 'home');
